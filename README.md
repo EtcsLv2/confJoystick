@@ -1,12 +1,14 @@
+# ConfJoystick
 
-
-Confjoystick is an Windowsapp to to emulate keypresses controlled by a Joystick. Similar to eg. Joytokey. Why a new app?  I tried many of these Apps but I could not configer all I wanted. So I let AI (ClaudeCode) create a configurable Joystick, shor just confJoystick. I createed it to use in Simrail or TD2 and it is not tested with other  Games.
+Confjoystick is an Windowsapp to to emulate keypresses controlled by a Joystick. Similar to eg. Joytokey. Why a new app?  I tried many of these Apps but I could not configer all I wanted. So I let AI (ClaudeCode) create a configurable Joystick, short just confJoystick. I createed it to use in Simrail or TD2 and it is not tested with other  Games. </p>
 <img width="470" height="436" alt="Conjoystick_image" src="https://github.com/user-attachments/assets/2f439251-1ac8-4da3-a865-aa65110867fd" />
 
 
-# ConfJoystick — Documentation
+# ConfJoystick — AI - Documentation
 
 ---
+## Getting Started
+Add the config directory as asked by the confJoystick on startup. When the Joysticks are recognized, save the config files, to create empty config where you can configure how your joystick inputs should be translated into Keypresess.
 
 ## Overview
 
@@ -21,7 +23,7 @@ may be required for games with anti-cheat or elevated privileges.
 
 ---
 
-## Program Features
+## Program Features - UI overview
 
 ### 1. Joystick Detection
 - Detects all connected DirectInput game controllers on startup.
@@ -94,87 +96,10 @@ The config directory is chosen on first run and can be changed via the File menu
 
 ---
 
-## Axis Names
-
-| Name | Description |
-|---|---|
-| `X` | Primary horizontal axis |
-| `Y` | Primary vertical axis |
-| `Z` | Primary twist / throttle axis |
-| `RotationX` | Secondary horizontal (Rx) |
-| `RotationY` | Secondary vertical (Ry) |
-| `RotationZ` | Secondary twist (Rz) |
-| `Slider0` | First slider / throttle |
-| `Slider1` | Second slider / throttle |
-
-All axis values are normalised to **0–100** (0 = minimum, 100 = maximum).
-DirectInput raw range (0–65535) is mapped automatically.
-
----
-
-## Directions
-
-| Value | Description |
-|---|---|
-| `Rising` | Fires when the axis value crosses the threshold going upward. |
-| `Falling` | Fires when the axis value crosses the threshold going downward. |
-| `Both` | Fires on both Rising and Falling crossings. |
-| `Right` | Alias for Rising (for horizontal axes). |
-| `Down` | Alias for Rising (for vertical axes). |
-| `Left` | Alias for Falling (for horizontal axes). |
-| `Up` | Alias for Falling (for vertical axes). |
-
----
-
-## Press Types
-
-| Value | Description |
-|---|---|
-| `KeyDown` | Sends a key-down event. The key stays held until a matching `KeyUp` fires (or emulation is stopped). |
-| `KeyUp` | Sends a key-up event. Use paired with `KeyDown`. |
-| `Hold` | Holds the key down while the axis is past the threshold; releases automatically when the axis moves back. |
-| `1Press` / `NPress` | Sends N complete key presses (down + up). Hold duration uses `DefaultPressMs`. Any positive integer is accepted (e.g. `5Press`, `10Press`). |
-| `NPressMSm` | Sends N key presses, each held for exactly **m** milliseconds. Overrides `DefaultPressMs` for this binding only. e.g. `3PressMS50` = 3 presses held 50 ms each. |
-
-**Legacy aliases (still accepted):**
-- `SinglePress` = `1Press`
-- `DoublePress` = `2Press`
-
----
-
-## Threshold
-
-A single value (0–100) or an array of values. Each value in the array acts as an
-independent crossing point for the same event.
-
-```json
-"Threshold": 75
-"Threshold": [25, 50, 75]
-```
-
-With the array form, each crossing fires the event independently.
-For Hold events, each threshold tracks its hold state separately.
-
----
-
-## Supported Keys
-
-| Category | Keys |
-|---|---|
-| Letters | `A` – `Z` |
-| Digits | `0` – `9` |
-| Function | `F1` – `F12` |
-| Navigation | `SPACE`, `ENTER` / `RETURN`, `TAB`, `ESCAPE` / `ESC`, `BACKSPACE`, `DELETE` / `DEL`, `INSERT` / `INS`, `HOME`, `END`, `PAGEUP` / `PGUP`, `PAGEDOWN` / `PGDN`, `UP`, `DOWN`, `LEFT`, `RIGHT` |
-| Modifiers | `SHIFT`, `LSHIFT`, `RSHIFT`, `CTRL` / `CONTROL`, `LCTRL`, `RCTRL`, `ALT`, `LALT`, `RALT` |
-| Numpad | `NUMPAD0`–`NUMPAD9` / `NUM0`–`NUM9`, `NUMPAD+` / `NUMADD` / `NUM+`, `NUMPAD-` / `NUMSUBTRACT` / `NUM-`, `NUMPAD*` / `NUMMULTIPLY` / `NUM*`, `NUMPAD/` / `NUMDIVIDE` / `NUM/`, `NUMPAD.` / `NUMDECIMAL` / `NUM.` |
-
-Key names are **case-insensitive** in the JSON.
-
----
 
 ## Config File Format
 
-### Lever Config (`*_levers.json`)
+### Lever Config (`*_levers.json`) can only be edited manually
 
 ```json
 {
@@ -200,7 +125,7 @@ Key names are **case-insensitive** in the JSON.
 }
 ```
 
-### Button Config (`*_buttons.json`)
+### Button Config (`*_buttons.json`) - editet by UI
 
 ```json
 {
@@ -223,25 +148,6 @@ Key names are **case-insensitive** in the JSON.
 - Button indices are 0-based (Button 1 in the UI = index `0` in the config).
 - `Modifiers` can be an empty array if no modifiers are needed.
 - Axes with no events can use an empty `Events` array or be omitted entirely.
-
----
-
-## Config Validation
-
-When a lever config is loaded, ConfJoystick checks every event for invalid argument
-values. If any are found, a warning popup lists each problem with its line number and
-the correct syntax, e.g.:
-
-```
-Line 14: Invalid PressType "1Press2000"
-  Valid values: Hold, KeyDown, KeyUp, SinglePress, DoublePress,
-               nPress (e.g. 3Press), nPressMSm (e.g. 3PressMS50)
-
-Line 22: Invalid Direction "Upward"
-  Valid values: Rising, Falling, Both, Right, Down, Left, Up
-```
-
-The config is still loaded — the warning is informational only.
 
 ---
 
@@ -335,6 +241,103 @@ Release happens the same way in both cases — once the value leaves the range t
 
 ---
 
+
+## Axis Names
+
+| Name | Description |
+|---|---|
+| `X` | Primary horizontal axis |
+| `Y` | Primary vertical axis |
+| `Z` | Primary twist / throttle axis |
+| `RotationX` | Secondary horizontal (Rx) |
+| `RotationY` | Secondary vertical (Ry) |
+| `RotationZ` | Secondary twist (Rz) |
+| `Slider0` | First slider / throttle |
+| `Slider1` | Second slider / throttle |
+
+All axis values are normalised to **0–100** (0 = minimum, 100 = maximum).
+DirectInput raw range (0–65535) is mapped automatically.
+
+---
+
+## Directions
+
+| Value | Description |
+|---|---|
+| `Rising` | Fires when the axis value crosses the threshold going upward. |
+| `Falling` | Fires when the axis value crosses the threshold going downward. |
+| `Both` | Fires on both Rising and Falling crossings. |
+| `Right` | Alias for Rising (for horizontal axes). |
+| `Down` | Alias for Rising (for vertical axes). |
+| `Left` | Alias for Falling (for horizontal axes). |
+| `Up` | Alias for Falling (for vertical axes). |
+
+---
+
+## Press Types
+
+| Value | Description |
+|---|---|
+| `KeyDown` | Sends a key-down event. The key stays held until a matching `KeyUp` fires (or emulation is stopped). |
+| `KeyUp` | Sends a key-up event. Use paired with `KeyDown`. |
+| `Hold` | Holds the key down while the axis is past the threshold; releases automatically when the axis moves back. |
+| `1Press` / `NPress` | Sends N complete key presses (down + up). Hold duration uses `DefaultPressMs`. Any positive integer is accepted (e.g. `5Press`, `10Press`). |
+| `NPressMSm` | Sends N key presses, each held for exactly **m** milliseconds. Overrides `DefaultPressMs` for this binding only. e.g. `3PressMS50` = 3 presses held 50 ms each. |
+
+**Legacy aliases (still accepted):**
+- `SinglePress` = `1Press`
+- `DoublePress` = `2Press`
+
+---
+
+## Threshold
+
+A single value (0–100) or an array of values. Each value in the array acts as an
+independent crossing point for the same event.
+
+```json
+"Threshold": 75
+"Threshold": [25, 50, 75]
+```
+
+With the array form, each crossing fires the event independently.
+For Hold events, each threshold tracks its hold state separately.
+
+---
+
+## Supported Keys
+
+| Category | Keys |
+|---|---|
+| Letters | `A` – `Z` |
+| Digits | `0` – `9` |
+| Function | `F1` – `F12` |
+| Navigation | `SPACE`, `ENTER` / `RETURN`, `TAB`, `ESCAPE` / `ESC`, `BACKSPACE`, `DELETE` / `DEL`, `INSERT` / `INS`, `HOME`, `END`, `PAGEUP` / `PGUP`, `PAGEDOWN` / `PGDN`, `UP`, `DOWN`, `LEFT`, `RIGHT` |
+| Modifiers | `SHIFT`, `LSHIFT`, `RSHIFT`, `CTRL` / `CONTROL`, `LCTRL`, `RCTRL`, `ALT`, `LALT`, `RALT` |
+| Numpad | `NUMPAD0`–`NUMPAD9` / `NUM0`–`NUM9`, `NUMPAD+` / `NUMADD` / `NUM+`, `NUMPAD-` / `NUMSUBTRACT` / `NUM-`, `NUMPAD*` / `NUMMULTIPLY` / `NUM*`, `NUMPAD/` / `NUMDIVIDE` / `NUM/`, `NUMPAD.` / `NUMDECIMAL` / `NUM.` |
+
+Key names are **case-insensitive** in the JSON.
+
+---
+## Config Validation
+
+When a lever config is loaded, ConfJoystick checks every event for invalid argument
+values. If any are found, a warning popup lists each problem with its line number and
+the correct syntax, e.g.:
+
+```
+Line 14: Invalid PressType "1Press2000"
+  Valid values: Hold, KeyDown, KeyUp, SinglePress, DoublePress,
+               nPress (e.g. 3Press), nPressMSm (e.g. 3PressMS50)
+
+Line 22: Invalid Direction "Upward"
+  Valid values: Rising, Falling, Both, Right, Down, Left, Up
+```
+
+The config is still loaded — the warning is informational only.
+
+---
+
 ## Tips
 
 - Use the Axis Monitor to observe live values and pick your thresholds.
@@ -345,3 +348,4 @@ Release happens the same way in both cases — once the value leaves the range t
 - Use `NPressMSm` when a game requires a longer key hold to register (e.g. `1PressMS200`).
 - If keys work in a browser but not in your game, run ConfJoystick as Administrator
   (right-click → Run as administrator).
+- If a game for me it was TD2 does behave weirdly and is not playable with joysticks plugged in You can virtually hide the Joysticks from this Game. I used https://github.com/nefarius/HidHide       1.5.230 to solve such a problem.
