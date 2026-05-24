@@ -12,3 +12,4 @@ Only tested on Win11 and Visual Studio 2026.
  Tested with 
  Target Framework: net8.0-windows
  Target Runtime: Portable
+  
