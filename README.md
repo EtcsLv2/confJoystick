@@ -1,6 +1,6 @@
 # ConfJoystick
 
-Confjoystick is an Windows app to to emulate keypresses controlled by a Joystick. Similar to eg. Joytokey. Why a new app?  I tried many of these Apps but I could not configer all I wanted. So I let AI (ClaudeCode) create a configurable Joystick, short just confJoystick. I createed it to use in Simrail or Train Driver 2 and it is not tested with other  Games.  
+Confjoystick is an Windows app to to emulate keypresses controlled by a Joystick. Similar to eg. Joytokey. Why a new app?  I tried many of these Apps but I could not configer all I wanted. So I let AI (ClaudeCode) create a configurable Joystick, short just confJoystick. I created it to use in Simrail or Train Driver 2 and it is not tested with other  Games.  
 <img width="470" height="436" alt="Conjoystick_image" src="https://github.com/user-attachments/assets/2f439251-1ac8-4da3-a865-aa65110867fd" />
 
 
@@ -8,7 +8,7 @@ Confjoystick is an Windows app to to emulate keypresses controlled by a Joystick
 
 ---
 ## Getting Started
-Add the config directory as asked by the confJoystick on startup. When the Joysticks are recognized, save the config files, to create empty config where you can configure how your joystick inputs should be translated into Keypresess.
+Add the config directory as asked by the confJoystick on startup. When your Joysticks are recognized, click Options/Save, to create empty config where you can configure, how your joystick inputs should be translated into keypresess.
 
 ## Overview
 
