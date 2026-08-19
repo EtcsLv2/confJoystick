@@ -1,0 +1,8 @@
+C:\Users\WhiteEnterpriseOne\Documents\Esk\Local_Program_Development\VS22_Publish\ConfJoystick\ConfJoystick.exe
+C:\Users\WhiteEnterpriseOne\Documents\Esk\Local_Program_Development\VS22_Publish\ConfJoystick\ConfJoystick.dll
+C:\Users\WhiteEnterpriseOne\Documents\Esk\Local_Program_Development\VS22_Publish\ConfJoystick\ConfJoystick.deps.json
+C:\Users\WhiteEnterpriseOne\Documents\Esk\Local_Program_Development\VS22_Publish\ConfJoystick\ConfJoystick.runtimeconfig.json
+C:\Users\WhiteEnterpriseOne\Documents\Esk\Local_Program_Development\VS22_Publish\ConfJoystick\ConfJoystick.pdb
+C:\Users\WhiteEnterpriseOne\Documents\Esk\Local_Program_Development\VS22_Publish\ConfJoystick\Newtonsoft.Json.dll
+C:\Users\WhiteEnterpriseOne\Documents\Esk\Local_Program_Development\VS22_Publish\ConfJoystick\SharpDX.dll
+C:\Users\WhiteEnterpriseOne\Documents\Esk\Local_Program_Development\VS22_Publish\ConfJoystick\SharpDX.DirectInput.dll

@@ -15,10 +15,14 @@
     </Window.Resources>
 
     <DockPanel>
-        <!-- Menu bar + inline status -->
+        <!-- Menu bar + inline status.
+             The status area is a WrapPanel: the window has a fixed width, so with three config
+             names on one line the right-most ones were pushed outside the visible area. Wrapping
+             puts whatever does not fit onto a further row instead. Each label/value pair is its
+             own StackPanel so a name never wraps away from its label. -->
         <DockPanel DockPanel.Dock="Top" LastChildFill="True"
                    Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-            <Menu DockPanel.Dock="Left" Background="Transparent">
+            <Menu DockPanel.Dock="Left" Background="Transparent" VerticalAlignment="Top">
                 <MenuItem Header="_Options">
                     <MenuItem Header="_Reload Config" Click="ReloadConfig_Click"/>
                     <MenuItem Header="_Save" Click="SaveAll_Click"/>
@@ -29,20 +33,48 @@
                     <MenuItem Header="Load _Button Config..."  Click="LoadButtonConfig_Click"/>
                     <MenuItem Header="Save Button Config As..." Click="SaveButtonConfigAs_Click"/>
                     <Separator/>
+                    <MenuItem Header="Load _FFB Config..." Click="LoadFfbConfig_Click"/>
+                    <Separator/>
                     <MenuItem Header="Change Config _Directory..." Click="ChangeConfigDir_Click"/>
                     <Separator/>
                     <MenuItem Header="Configure _Keys..." Click="ButtonMappingButton_Click"/>
                 </MenuItem>
             </Menu>
-            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"
-                        VerticalAlignment="Center" Margin="0,0,8,0">
-                <TextBlock x:Name="StatusText" Text="Ready" FontSize="11" Margin="0,0,12,0" RenderTransformOrigin="-6.366,0.641"/>
-                <TextBlock Text="Configs:  Lever: " FontSize="11" Foreground="#FF555555"/>
-                <TextBlock x:Name="LeverFileText" Text="—" FontSize="11" Foreground="#FF555555"/>
-                <TextBlock Text="  Button: " FontSize="11" Foreground="#FF555555"/>
-                <TextBlock x:Name="ButtonFileText" Text="—" FontSize="11" Foreground="#FF555555"/>
-            </StackPanel>
-            <Border/> <!-- fills remaining centre space -->
+            <WrapPanel Orientation="Horizontal" Margin="6,3,6,3">
+                <WrapPanel.Resources>
+                    <!-- Config names can be long; trim rather than force an extra row, and
+                         show the full name on hover. -->
+                    <Style x:Key="ConfigName" TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="11"/>
+                        <Setter Property="Foreground" Value="#FF555555"/>
+                        <Setter Property="MaxWidth" Value="170"/>
+                        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        <Setter Property="ToolTip"
+                                Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                    </Style>
+                    <Style x:Key="ConfigLabel" TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="11"/>
+                        <Setter Property="Foreground" Value="#FF555555"/>
+                    </Style>
+                </WrapPanel.Resources>
+
+                <TextBlock x:Name="StatusText" Text="Ready" FontSize="11" Margin="0,1,14,1"
+                           TextTrimming="CharacterEllipsis"
+                           ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,1,12,1">
+                    <TextBlock Text="Lever: " Style="{StaticResource ConfigLabel}"/>
+                    <TextBlock x:Name="LeverFileText" Text="—" Style="{StaticResource ConfigName}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,1,12,1">
+                    <TextBlock Text="Button: " Style="{StaticResource ConfigLabel}"/>
+                    <TextBlock x:Name="ButtonFileText" Text="—" Style="{StaticResource ConfigName}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,1,0,1">
+                    <TextBlock Text="FFB: " Style="{StaticResource ConfigLabel}"/>
+                    <TextBlock x:Name="FfbFileText" Text="—" Style="{StaticResource ConfigName}"/>
+                </StackPanel>
+            </WrapPanel>
         </DockPanel>
 
         <Grid Margin="12">

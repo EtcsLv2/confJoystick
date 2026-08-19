@@ -1,21 +1,21 @@
 <Window x:Class="ConfJoystick.ButtonMappingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Button → Key Mapping" Height="420" Width="500"
-        ResizeMode="CanMinimize"
+        Title="Button → Key Mapping" Height="460" Width="500"
+        MinHeight="360" MinWidth="420"
         WindowStartupLocation="CenterOwner">
 
     <Grid Margin="12">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="237*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>   <!-- status -->
+            <RowDefinition Height="Auto"/>   <!-- joystick selector -->
+            <RowDefinition Height="Auto"/>   <!-- live assignment preview -->
+            <RowDefinition Height="*"/>      <!-- mappings -->
+            <RowDefinition Height="Auto"/>   <!-- legend -->
         </Grid.RowDefinitions>
 
         <!-- State status -->
-        <Border Grid.Row="0" Margin="-1,3,1,5"
+        <Border Grid.Row="0" Margin="0,0,0,8"
                 Background="#FFEEF2FF" BorderBrush="#FF9FA8DA"
                 BorderThickness="1" CornerRadius="3" Padding="12,8">
             <TextBlock x:Name="StatusText"
@@ -24,26 +24,32 @@
                        TextWrapping="Wrap"/>
         </Border>
 
-        <ComboBox x:Name="JoystickComboBox"
-          SelectionChanged="JoystickComboBox_SelectionChanged" Margin="-1,43,1,67" Grid.RowSpan="3" />
+        <ComboBox Grid.Row="1"
+                  x:Name="JoystickComboBox"
+                  SelectionChanged="JoystickComboBox_SelectionChanged"
+                  Height="26" VerticalContentAlignment="Center"
+                  Margin="0,0,0,8"/>
 
         <!-- Live assignment preview -->
         <TextBlock Grid.Row="2"
                    x:Name="AssignmentText"
                    Text=""
-                   FontSize="12" Margin="1,38,1,27"
+                   FontSize="12" Margin="2,0,2,8"
+                   TextWrapping="Wrap"
+                   MinHeight="17"
                    Foreground="#FF222222"/>
 
         <!-- Mappings list -->
-        <GroupBox Grid.Row="2" Header="Mappings" Padding="4" Margin="0,68,0,0" Grid.RowSpan="2">
-            <ListView x:Name="MappingList" IsTabStop="False" BorderThickness="0" Height="265">
+        <GroupBox Grid.Row="3" Header="Mappings" Padding="4">
+            <ListView x:Name="MappingList"
+                      IsTabStop="True"
+                      BorderThickness="0"
+                      MouseDoubleClick="MappingList_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Joystick"   Width="160"
-                                        DisplayMemberBinding="{Binding JoystickLabel}"/>
-                        <GridViewColumn Header="Button"     Width="65"
+                        <GridViewColumn Header="Button"      Width="90"
                                         DisplayMemberBinding="{Binding ButtonLabel}"/>
-                        <GridViewColumn Header="Key / Combo" Width="220"
+                        <GridViewColumn Header="Key / Combo" Width="340"
                                         DisplayMemberBinding="{Binding KeyLabel}"/>
                     </GridView>
                 </ListView.View>
@@ -51,9 +57,10 @@
         </GroupBox>
 
         <!-- Keyboard legend -->
-        <TextBlock Grid.Row="3"
-                   Text="Enter = Confirm    Backspace = Go back    Esc = Close"
+        <TextBlock Grid.Row="4"
+                   x:Name="LegendText"
+                   Text="↑↓ Select    Enter Edit / Save    Backspace Clear    Esc Cancel / Close"
                    FontSize="10" Foreground="#FF888888"
-                   HorizontalAlignment="Center" Margin="0,181,0,29"/>
+                   HorizontalAlignment="Center" Margin="0,6,0,0"/>
     </Grid>
 </Window>

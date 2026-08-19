@@ -22,3 +22,5 @@ From the command line:
 ```
 dotnet build ConfJoystick.sln
 ```
+
+See [ConfJoystick_doc.md](ConfJoystick_doc.md) for usage and configuration.

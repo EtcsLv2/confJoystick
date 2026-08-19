@@ -1,0 +1,8 @@
+C:\Users\WhiteEnterpriseOne\Documents\LocalReal_PersonalData\Local_Program_Development\VS26_Publish\New folder\ConfJoystick.exe
+C:\Users\WhiteEnterpriseOne\Documents\LocalReal_PersonalData\Local_Program_Development\VS26_Publish\New folder\ConfJoystick.dll
+C:\Users\WhiteEnterpriseOne\Documents\LocalReal_PersonalData\Local_Program_Development\VS26_Publish\New folder\ConfJoystick.deps.json
+C:\Users\WhiteEnterpriseOne\Documents\LocalReal_PersonalData\Local_Program_Development\VS26_Publish\New folder\ConfJoystick.runtimeconfig.json
+C:\Users\WhiteEnterpriseOne\Documents\LocalReal_PersonalData\Local_Program_Development\VS26_Publish\New folder\ConfJoystick.pdb
+C:\Users\WhiteEnterpriseOne\Documents\LocalReal_PersonalData\Local_Program_Development\VS26_Publish\New folder\Newtonsoft.Json.dll
+C:\Users\WhiteEnterpriseOne\Documents\LocalReal_PersonalData\Local_Program_Development\VS26_Publish\New folder\SharpDX.dll
+C:\Users\WhiteEnterpriseOne\Documents\LocalReal_PersonalData\Local_Program_Development\VS26_Publish\New folder\SharpDX.DirectInput.dll
